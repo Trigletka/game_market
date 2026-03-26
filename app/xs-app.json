@@ -1,0 +1,30 @@
+{
+  "welcomeFile": "/index.html",
+  "authenticationMethod": "route",
+  "routes": [
+    {
+      "source": "^/odata/v4/marketplace/Products(.*)$",
+      "target": "/odata/v4/marketplace/Products$1",
+      "destination": "srv-api",
+      "authenticationType": "none"
+    },
+    {
+      "source": "^/odata/v4/marketplace/Categories(.*)$",
+      "target": "/odata/v4/marketplace/Categories$1",
+      "destination": "srv-api",
+      "authenticationType": "none"
+    },
+    {
+      "source": "^/odata/v4/marketplace/Feedbacks(.*)$",
+      "target": "/odata/v4/marketplace/Feedbacks$1",
+      "destination": "srv-api",
+      "authenticationType": "none"
+    },
+    {
+      "source": "^/odata/v4/marketplace/(.*)$",
+      "target": "/odata/v4/marketplace/$1",
+      "destination": "srv-api",
+      "authenticationType": "xsuaa"
+    }
+  ]
+}
