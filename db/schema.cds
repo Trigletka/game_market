@@ -32,7 +32,7 @@ entity Feedback : cuid, managed {
 
 // what user can do
 entity Interactions : cuid, managed {
-    user : Association to Users;
+    us : Association to Users;
     code : String(50);   // ('ORDER', 'DISPUTE' etc.)
     date : DateTime;
     summary : String(100);
