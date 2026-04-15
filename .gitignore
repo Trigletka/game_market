@@ -1,19 +1,43 @@
 node_modules/
-target/
-_out/
-gen/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.env
+.env.*
 
+gen/
+_out/
+target/
 .cdsrc-private.json
 default-*.json
-*.sqlite
 
-# MTA
+app/*/dist/
+dist/
+
+*.sqlite
+*.sqlite3
+*.db
+*.db3
+sqlite.db
+
+
+@cds-models/
+
+# MTA (Multi-Target Application)
 mta_archives/
-*_mta_build_tmp
+*_mta_build_tmp/
 *.mtar
 
-# Other
-.DS_Store
 
-# @cap-js/cds-typer
-@cds-models
+# OS & IDE specifics
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
