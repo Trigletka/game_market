@@ -14,9 +14,9 @@ entity Users : managed, cuid {
     sellerRating: Decimal(2,1);  
 
     interactions: Composition of many Interactions on interactions.user = $self; 
-    preferences: Composition of many Preferences on preferences.user = $self; 
+    wishlist: Composition of many Wishlist on wishlist.user = $self; 
     
-    products: Association to many Products on products.seller = $self; 
+    offerings: Association to many Offerings on offerings.seller = $self; 
 
     leftFeedbacks: Association to many Reviews on leftFeedbacks.author = $self;
     feedbackOnSeller: Composition of many SellerFeedbacks on feedbackOnSeller.seller = $self;
@@ -25,15 +25,15 @@ entity Users : managed, cuid {
 
 entity Interactions : managed, cuid {
     user: Association to Users;
-    type: String(20);  // ORDER, DISPUTE etc
+    type: String(20);
     summary: String(100);
     description: String(500); 
     date: DateTime; 
 }
 
-entity Preferences : managed, cuid {
+entity Wishlist : managed, cuid {
     user: Association to Users;
-    product: Association to Products;
+    offering: Association to Offerings;
 }
 
 entity StatusTypes : CodeList {
@@ -44,17 +44,17 @@ entity StatusTypes : CodeList {
 entity Genres : managed, cuid {
     name: String(50);
     description: String(400);
-    products: Association to many Products on products.genre = $self;
+    offerings: Association to many Offerings on offerings.genre = $self;
 }
 
 entity Games : managed, cuid {
     name: String(100);
     description: String(1500);
     genre: Association to Genres;
-    products: Association to many Products on products.game = $self;
+    offerings: Association to many Offerings on offerings.game = $self;
 }
 
-entity Products : managed, cuid {
+entity Offerings : managed, cuid {
     title: String(100);
     description: String(1500);
     
@@ -67,11 +67,11 @@ entity Products : managed, cuid {
 
     game: Association to Games;
     genre: Association to Genres;
-    reviews: Composition of many Reviews on reviews.product = $self;
+    reviews: Composition of many Reviews on reviews.offering = $self;
 }
 
 entity Reviews : managed, cuid {
-    product: Association to Products;
+    offering: Association to Offerings;
     author: Association to Users; 
     rating: Integer;
     comment: String(500);

@@ -5,16 +5,16 @@ using { gamekeys.crm as db } from '../db/schema';
 service CrmService {
     @cds.search: {name, email, phone}
     @odata.draft.enabled
-
+    
     entity Users as projection on db.Users {
         *, 
         // color statuses
         case 
-            when status.code = 'ACTIVE' then 3    // Зеленый
-            when status.code = 'VIP' then 3       // Зеленый
-            when status.code = 'AT_RISK' then 2   // Желтый / Оранжевый
-            when status.code = 'INACTIVE' then 1  // Красный
-            else 0                                // Серый (без цвета)
+            when status.code = 'ACTIVE' then 3    // green
+            when status.code = 'VIP' then 3       // green
+            when status.code = 'AT_RISK' then 2   // yellow
+            when status.code = 'INACTIVE' then 4  // red
+            else 0
         end as criticality : Integer
 
     } actions {
@@ -23,11 +23,17 @@ service CrmService {
         
         @(restrict: [{ to: ['Admin', 'SalesManager'] }])
         action setVIP() returns Users;
+
+        @(restrict: [{ to: ['Admin', 'SalesManager', 'SupportAgent'] }])
+        action updateSellerRating() returns Users;
     };
 
-    entity Products as projection on db.Products;
+    entity Offerings as projection on db.Offerings actions {
+        @(restrict: [{ to: ['Admin', 'SalesManager', 'SupportAgent'] }])
+        action updateOfferingRating() returns Offerings;
+    };
     entity Games as projection on db.Games;
-    entity Preferences as projection on db.Preferences;
+    entity Wishlist as projection on db.Wishlist;
     entity Reviews as projection on db.Reviews;
     entity Interactions as projection on db.Interactions;
     entity UserNotes as projection on db.UserNotes;
@@ -35,8 +41,6 @@ service CrmService {
 
     @readonly entity Genres as projection on db.Genres;
     @readonly entity StatusTypes as projection on db.StatusTypes;
-
-    action updateInactiveUsers() returns String;
 }
 
 // RBAC
@@ -69,3 +73,13 @@ annotate CrmService.UserNotes with @(restrict: [
     { grant: ['READ', 'CREATE', 'UPDATE'], to: ['SalesManager', 'SupportAgent'] },
     { grant: ['*'], to: 'Admin' }
 ]);
+
+annotate CrmService.Offerings with @(restrict: [
+    { grant: ['READ'], to: 'SupportAgent' },
+    { grant: ['READ', 'DELETE', 'UPDATE'], to: 'SalesManager' },
+    { grant: ['*'], to: 'Admin' }
+]);
+
+annotate CrmService.Reviews with @(restrict: [
+    { grant: ['*'], to: ['Admin', 'SalesManager'] }
+])

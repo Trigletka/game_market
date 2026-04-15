@@ -1,17 +1,16 @@
 const cds = require('@sap/cds');
 
 module.exports = cds.service.impl(async function() {
-    const { Users, Reviews, SellerFeedbacks, Products } = this.entities;
+    const { Users, Reviews, SellerFeedbacks, Offerings } = this.entities;
     // validation
-    this.before(['CREATE', 'UPDATE'], Reviews, (req) => {
-        const data = req.data;
-        if (!data.rating) {
-            req.error(400, 'Rate the product', 'in/rating');
-        }
-        if (1 > data.rating || data.rating > 5 ) {
-            req.error(400, 'Rating can be only from 1 to 5', 'in/rating');
+    this.before('CREATE', [Reviews, SellerFeedbacks], (req) => {
+        const { rating } = req.data;
+        if (rating < 1 || rating > 5) {
+            return req.error(400, 'Рейтинг должен быть числом от 1 до 5');
         }
     });
+
+//----------------------------------------------------
     // button logic
     this.on('setVIP', Users, async (req) => {
         const UserId = req.params[0].ID; 
@@ -27,64 +26,68 @@ module.exports = cds.service.impl(async function() {
         return await SELECT.one.from(Users).where({ ID: UserId });
     });
 
-    this.on('served', async () => {
-        console.log('🔄 [System] Starting initial calculation of seller ratings...');
+    this.on('updateSellerRating', Users, async (req) => {
+        const userId = req.params[0].ID; 
         
-        // Достаем уникальные ID всех продавцов, на которых есть отзывы
-        const sellers = await SELECT.distinct('seller_ID').from(SellerFeedbacks).where('seller_ID is not null');
-        
-        let count = 0;
-        // Прогоняем каждого продавца через нашу готовую функцию
-        for (const s of sellers) {
-            await calcAndUpdateSellerRating(s.seller_ID);
-            count++;
-        }
-        
-        console.log(`✅ [System] Initial calculation complete! Updated ratings for ${count} sellers.`);
-    })
+        const userData = await SELECT.one.from(Users).columns(u => {
+            u.ID,
+            u.feedbackOnSeller(f => { f.rating })
+        }).where({ ID: userId });
 
-    // calculating feedbacks on seller
-    this.after(['CREATE', 'UPDATE', 'DELETE'], SellerFeedbacks, async (feedback, req) => {
-        const sellerId = feedback?.seller_ID || req.data?.seller_ID; 
-        if (!sellerId) return; 
-
-        const allFeedbacks = await SELECT.from(SellerFeedbacks).where({ seller_ID: sellerId });
+        if (!userData) return req.error(404, 'User not found');
 
         let newRating = 0;
-        let newStatus = 'ACTIVE';
+        const feedbacks = userData.feedbackOnSeller || [];
 
-        if (allFeedbacks.length > 0) {
-            const sum = allFeedbacks.reduce((total, fb) => total + (fb.rating || 0), 0);
-            newRating = Number((sum / allFeedbacks.length).toFixed(1));
-
-            // At Risk status logic
+        if (feedbacks.length > 0) {
+            const sum = feedbacks.reduce((total, fb) => total + (fb.rating || 0), 0);
+            newRating = Number((sum / feedbacks.length).toFixed(1));
+            
             if (newRating < 3) {
-                newStatus = 'AT_RISK';
+                await UPDATE(Users).set({
+                    status_code: 'AT_RISK'
+                }).where({ ID: userId });
             }
         }
 
         await UPDATE(Users).set({
-            sellerRating: newRating,
-            status_code: newStatus
-        }).where({ ID: sellerId });
+            sellerRating: newRating
+        }).where({ ID: userId });
+
+        req.notify(`Rating successfully updated to ${newRating}`);
+        return await SELECT.one.from(Users).where({ ID: userId });
     });
 
-    this.after(['CREATE', 'UPDATE', 'DELETE'], Reviews, async (review, req) => {
-        const productId = review?.product_ID || req.data?.product_ID; 
-        if (!productId) return; 
+    this.on('updateOfferingRating', Offerings, async (req) => {
+        const offerId = req.params[0].ID; 
+        
+        const offerData = await SELECT.one.from(Offerings).columns(o => {
+            o.ID,
+            o.reviews(r => { r.rating })
+        }).where({ ID: offerId });
 
-        const allReviews = await SELECT.from(Reviews).where({ product_ID: productId });
+        if (!offerData) return req.error(404, 'Offering not found');
 
         let newRating = 0;
+        const allReviews = offerData.reviews || [];
 
         if (allReviews.length > 0) {
             const sum = allReviews.reduce((total, rev) => total + (rev.rating || 0), 0);
             newRating = Number((sum / allReviews.length).toFixed(1));
         }
 
-        await UPDATE(Products).set({
+        await UPDATE(Offerings).set({
             averageRating: newRating
-        }).where({ ID: productId });
+        }).where({ ID: offerId });
+
+        req.notify(`Rating successfully updated to ${newRating}`);
+        return await SELECT.one.from(Offerings).where({ ID: offerId });
+    });
+
+//-----------------------------------
+
+    this.after('CREATE', Users, (each) => {
+        console.log(`------------> New user: ${each.name} (${each.isSeller ? 'Seller' : 'Not Seller'})<-------------------------`);
     });
 
 });

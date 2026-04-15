@@ -2,13 +2,21 @@
   "name": "key_marketplace",
   "version": "1.0.0",
   "dependencies": {
-    "@sap/cds": "^9"
+    "@cap-js/hana": "^2",
+    "@sap/cds": "^9",
+    "@sap/xssec": "^4"
   },
   "devDependencies": {
-    "@cap-js/sqlite": "^2"
+    "@cap-js/cds-test": "^0.4.1",
+    "@cap-js/sqlite": "^2",
+    "@sap/cds-dk": "^9",
+    "axios": "^1.15.0",
+    "jest": "^30.3.0"
   },
   "scripts": {
-    "start": "cds-serve"
+    "start": "cds run",
+    "watch": "cds watch",
+    "test": "jest"
   },
   "private": true,
   "cds": {
@@ -38,6 +46,14 @@
       },
       "db": {
         "kind": "sqlite"
+      },
+      "[production]": {
+        "db": {
+          "kind": "hana"
+        },
+        "auth": {
+          "kind": "xsuaa"
+        }
       }
     },
     "csv": {

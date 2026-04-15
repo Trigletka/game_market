@@ -1,6 +1,5 @@
 code;name;descr
 ACTIVE;Active; Active user
 INACTIVE;Inactive; Inative user
-ATRISK;At risk; User with rating below 3
+AT_RISK;At risk; User with rating below 3
 VIP;VIP client; Stuff can give this role to favorite customers
-BLOCKED;Blocked; Blocked user
