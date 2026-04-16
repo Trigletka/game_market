@@ -51,7 +51,8 @@ module.exports = cds.service.impl(async function() {
         }
 
         await UPDATE(Users).set({
-            sellerRating: newRating
+            sellerRating: newRating,
+            status_code: 'ACTIVE'
         }).where({ ID: userId });
 
         req.notify(`Rating successfully updated to ${newRating}`);
