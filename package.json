@@ -24,6 +24,12 @@
       "auth": {
         "kind": "mocked",
         "users": {
+          "user": {
+            "password": "11",
+            "roles": [
+              "authenticated-user"
+            ]
+          },
           "admin": {
             "password": "11",
             "roles": [
