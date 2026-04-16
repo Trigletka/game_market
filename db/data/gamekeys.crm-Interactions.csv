@@ -1,0 +1,41 @@
+ID;user_id;date;type;summary;description
+11111111-4444-5555-6666-777777770001;11111111-1111-1111-1111-111111111101;2026-03-01T09:30:00Z;ORDER;Order confirmation issue;Customer didn't receive order confirmation email after purchase, requested manual resend.
+11111111-4444-5555-6666-777777770002;11111111-1111-1111-1111-111111111102;2026-03-02T14:15:00Z;DISPUTE;Seller commission dispute;PixelWitch claims platform overcharged commission on a sale, requested refund calculation.
+11111111-4444-5555-6666-777777770003;11111111-1111-1111-1111-111111111103;2026-03-03T11:45:00Z;CALL;Payment method problem;User unable to add new credit card to wallet, helped troubleshoot browser issue.
+11111111-4444-5555-6666-777777770004;11111111-1111-1111-1111-111111111104;2026-03-04T16:20:00Z;CHAT;Game key activation error;User reported purchased key already redeemed, opened investigation with seller.
+11111111-4444-5555-6666-777777770005;11111111-1111-1111-1111-111111111105;2026-03-05T10:00:00Z;EMAIL;Refund request;RogueMage wants refund for wrong game version purchased by mistake.
+11111111-4444-5555-6666-777777770006;11111111-1111-1111-1111-111111111106;2026-03-06T13:30:00Z;ORDER;Pre-order bonus missing;User didn't receive promised pre-order skin, escalated to offering team.
+11111111-4444-5555-6666-777777770007;11111111-1111-1111-1111-111111111107;2026-03-07T15:45:00Z;CHAT;Account security concern;User reported suspicious login attempt from unknown device, password reset performed.
+11111111-4444-5555-6666-777777770008;11111111-1111-1111-1111-111111111108;2026-03-08T12:00:00Z;DISPUTE;Faulty game code;FrostByte provided invalid region key, user requests full replacement or refund.
+11111111-4444-5555-6666-777777770009;11111111-1111-1111-1111-111111111109;2026-03-09T17:10:00Z;CALL;Two-factor authentication;User lost access to authenticator app, needed account recovery assistance.
+11111111-4444-5555-6666-777777770010;11111111-1111-1111-1111-111111111110;2026-03-10T09:45:00Z;EMAIL;Wishlist notification bug;User not receiving email alerts when wishlisted games go on sale.
+11111111-4444-5555-6666-777777770011;11111111-1111-1111-1111-111111111111;2026-03-11T14:30:00Z;CHAT;Gift purchase issue;Bought game as gift but recipient never received email notification.
+11111111-4444-5555-6666-777777770012;11111111-1111-1111-1111-111111111112;2026-03-12T11:00:00Z;ORDER;Duplicate charge;User was charged twice for single transaction, requested refund for duplicate.
+11111111-4444-5555-6666-777777770013;11111111-1111-1111-1111-111111111113;2026-03-13T16:30:00Z;CALL;Seller verification delay;User applied for seller status 5 days ago, still no response from verification team.
+11111111-4444-5555-6666-777777770014;11111111-1111-1111-1111-111111111114;2026-03-14T10:15:00Z;DISPUTE;Game doesn't match description;Purchased game missing features advertised on store page, requesting compensation.
+11111111-4444-5555-6666-777777770015;11111111-1111-1111-1111-111111111115;2026-03-15T13:00:00Z;EMAIL;Platform feedback;User suggested adding regional pricing and more payment methods for their country.
+11111111-4444-5555-6666-777777770016;11111111-1111-1111-1111-111111111116;2026-03-16T15:20:00Z;CHAT;Download speed issue;User reports very slow download speeds despite having fast internet connection.
+11111111-4444-5555-6666-777777770017;11111111-1111-1111-1111-111111111117;2026-03-17T12:30:00Z;ORDER;Cancellation request;PhantomPulse wants to cancel order placed 2 hours ago, hasn't been processed yet.
+11111111-4444-5555-6666-777777770018;11111111-1111-1111-1111-111111111118;2026-03-18T09:15:00Z;CALL;Installation problem;Game crashes on launch after installation, troubleshooting steps provided.
+11111111-4444-5555-6666-777777770019;11111111-1111-1111-1111-111111111119;2026-03-19T14:45:00Z;DISPUTE;Counterfeit key suspicion;User believes key was generated illegally, asks for investigation and refund.
+11111111-4444-5555-6666-777777770020;11111111-1111-1111-1111-111111111120;2026-03-20T11:30:00Z;EMAIL;Newsletter unsubscribe;TitanBane requested to be removed from all marketing and promotional emails.
+11111111-4444-5555-6666-777777770021;11111111-1111-1111-1111-111111111121;2026-03-21T16:00:00Z;CHAT;Region lock confusion;User bought EU key but lives in Asia, key doesn't work, requests exchange.
+11111111-4444-5555-6666-777777770022;11111111-1111-1111-1111-111111111122;2026-03-22T10:30:00Z;ORDER;Missing DLC content;Deluxe edition purchased but DLC items not appearing in library.
+11111111-4444-5555-6666-777777770023;11111111-1111-1111-1111-111111111123;2026-03-23T13:45:00Z;CALL;Account deletion request;ZephyrWisp wants permanent account deletion due to privacy concerns.
+11111111-4444-5555-6666-777777770024;11111111-1111-1111-1111-111111111124;2026-03-24T15:10:00Z;DISPUTE;Wrong item delivered;User received different game than what was ordered, demands correct key.
+11111111-4444-5555-6666-777777770025;11111111-1111-1111-1111-111111111125;2026-03-25T12:00:00Z;EMAIL;Loyalty program inquiry;User asked about points accumulation and rewards redemption process.
+11111111-4444-5555-6666-777777770026;11111111-1111-1111-1111-111111111126;2026-03-26T09:45:00Z;CHAT;Steam key activation;User unsure how to activate purchased key on Steam platform, step-by-step guide provided.
+11111111-4444-5555-6666-777777770027;11111111-1111-1111-1111-111111111127;2026-03-27T14:20:00Z;ORDER;Exchange request;User bought game by accident, wants to exchange for different title.
+11111111-4444-5555-6666-777777770028;11111111-1111-1111-1111-111111111128;2026-03-28T11:15:00Z;CALL;Seller payout delay;User hasn't received payment for sales made 2 weeks ago, investigating with finance team.
+11111111-4444-5555-6666-777777770029;11111111-1111-1111-1111-111111111129;2026-03-29T16:30:00Z;DISPUTE;Game removed from library;KarmaByte's purchased game disappeared from library, requesting restoration or refund.
+11111111-4444-5555-6666-777777770030;11111111-1111-1111-1111-111111111130;2026-03-30T10:00:00Z;EMAIL;Partnership inquiry;User represents indie game studio, wants to discuss selling keys on platform.
+11111111-4444-5555-6666-777777770031;11111111-1111-1111-1111-111111111131;2026-03-31T11:30:00Z;CHAT;Wrong account access;User logged into wrong account, needs help merging purchase history.
+11111111-4444-5555-6666-777777770032;11111111-1111-1111-1111-111111111132;2026-04-01T14:45:00Z;ORDER;Shipping address error;User entered wrong email for key delivery, requested address correction.
+11111111-4444-5555-6666-777777770033;11111111-1111-1111-1111-111111111133;2026-04-02T09:15:00Z;CALL;Tax invoice request;OnyxShard needs VAT invoice for business accounting purposes.
+11111111-4444-5555-6666-777777770034;11111111-1111-1111-1111-111111111134;2026-04-03T16:20:00Z;DISPUTE;Key expired before activation;User purchased key 6 months ago, just tried to activate but it's expired.
+11111111-4444-5555-6666-777777770035;11111111-1111-1111-1111-111111111135;2026-04-04T10:30:00Z;EMAIL;Mobile app bug;User reports app crashes when viewing order history on Android.
+11111111-4444-5555-6666-777777770036;11111111-1111-1111-1111-111111111136;2026-04-05T13:50:00Z;CHAT;Seller payout method;User wants to change payout method from PayPal to bank transfer.
+11111111-4444-5555-6666-777777770037;11111111-1111-1111-1111-111111111137;2026-04-06T15:10:00Z;ORDER;Discount code not applied;User entered promo code at checkout but discount wasn't applied.
+11111111-4444-5555-6666-777777770038;11111111-1111-1111-1111-111111111138;2026-04-07T11:00:00Z;CALL;Account recovery after hack;ToxinDrift's account was compromised, needs recovery and security audit.
+11111111-4444-5555-6666-777777770039;11111111-1111-1111-1111-111111111139;2026-04-08T14:25:00Z;DISPUTE;Game performance issues;User claims game is unplayable due to optimization, wants refund despite playing 10 hours.
+11111111-4444-5555-6666-777777770040;11111111-1111-1111-1111-111111111140;2026-04-09T09:40:00Z;EMAIL;API access request;Developer wants API access for bulk order management system.

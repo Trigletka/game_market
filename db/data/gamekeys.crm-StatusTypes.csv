@@ -1,0 +1,5 @@
+code;name;descr
+ACTIVE;Active; Active user
+INACTIVE;Inactive; Inative user
+AT_RISK;At risk; User with rating below 3
+VIP;VIP client; Stuff can give this role to favorite customers

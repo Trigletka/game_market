@@ -1,0 +1,45 @@
+name: SAP CAP CI/CD Deploy
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run Tests
+        run: npm test
+
+      - name: Install MTA Build Tool and CF CLI
+        run: |
+          npm install -g mbt
+          curl -L "https://packages.cloudfoundry.org/stable?release=linux64-binary&source=github" | tar -zx
+          sudo mv cf8 /usr/local/bin/cf
+          cf install-plugin -f https://plugins.cloudfoundry.org/multiapps-plugin-linux64
+
+      - name: Build MTA
+        run: mbt build
+
+      - name: CF Login
+        run: |
+          cf login -a ${{ secrets.CF_API }} \
+                   -u ${{ secrets.CF_USER }} \
+                   -p ${{ secrets.CF_PASSWORD }} \
+                   -o ${{ secrets.CF_ORG }} \
+                   -s ${{ secrets.CF_SPACE }}
+
+      - name: Deploy to SAP BTP
+        run: cf deploy mta_archives/*.mtar --delete-services -f
