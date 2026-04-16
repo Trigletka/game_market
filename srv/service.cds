@@ -12,8 +12,8 @@ service CrmService {
         case 
             when status.code = 'ACTIVE' then 3    // green
             when status.code = 'VIP' then 3       // green
-            when status.code = 'AT_RISK' then 2   // yellow
-            when status.code = 'INACTIVE' then 4  // red
+            when status.code = 'AT_RISK' then 1   // yellow
+            when status.code = 'INACTIVE' then 4
             else 0
         end as criticality : Integer
 
