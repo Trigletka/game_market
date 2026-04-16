@@ -49,7 +49,7 @@ const adminAuth = {
 };
 
 const userAuth = {
-    auth: { username: 'bob', password: '' }
+    auth: { username: 'user', password: '11' }
 };
 
 describe('CrmService Authorization Tests', () => {
