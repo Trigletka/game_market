@@ -6,7 +6,7 @@ module.exports = cds.service.impl(async function() {
     this.before('CREATE', [Reviews, SellerFeedbacks], (req) => {
         const { rating } = req.data;
         if (rating < 1 || rating > 5) {
-            return req.error(400, 'Рейтинг должен быть числом от 1 до 5');
+            return req.error(400, 'Rating from 1 to 5');
         }
     });
 
